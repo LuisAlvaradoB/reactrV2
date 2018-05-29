@@ -1,12 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
 
-class Test extends React.Component {
-    render () {
-        return (
-            <h1>ReactrV2</h1>
-        )
-    }
-}
+import App from './components/App'
 
-render (<Test />, document.getElementById('root'))
+render (<App />, document.getElementById('root'))
