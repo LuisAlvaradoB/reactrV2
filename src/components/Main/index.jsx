@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import MessageList from '../MessageList'
+import InputText from '../InputText'
+import ProfileBar from '../ProfileBar'
 
 class Main extends Component {
     constructor () {
         super()
         this.state = {
+            openText: false,
             messages: [
                 {
                     text: 'Mensaje del Tweet',
@@ -25,8 +28,27 @@ class Main extends Component {
         }
     }
 
+    handleOpenText (event) {
+        event.preventDefault()
+        this.setState({ openText: true })
+    }
+    renderOpenText () {
+        if (this.state.openText) {
+            return <InputText />
+        }
+    }
     render () {
-        return <MessageList messages={this.state.messages} />
+        return (
+            <div>
+                <ProfileBar
+                    picture={this.props.user.fotoURL}
+                    username={this.props.user.email.split('@')[0]}
+                    onOpenText={this.props.handleOpenText}
+                />
+                {this.renderOpenText()}
+                <MessageList messages={this.state.messages} />
+            </div>
+        ) 
     }
 }
 
